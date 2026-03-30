@@ -22,13 +22,13 @@ const CREDITS_BOTTOM: f32 = TEXT_PADDING;
 const TERMINAL_MESSAGE: &str = "\
 [SYSTEM] SUCCESS: OBJECTIVE_CRITERIA_MET\n\
 \n\
-[SYSTEM] EXTRACTING: /logs/sim_90423831＿final_metrics.dat\n\
+[SYSTEM] EXTRACTING: /logs/sim_90423831_final_metrics.dat\n\
 \n\
 [SYSTEM] STATUS: DATA_VALIDATED_AND_UPLOADED\n\
 \n\
 [SYSTEM] EXECUTING: /usr/bin/purge_environment\n\
 \n\
-[SYSTEM] INITIALIZING: /usr/bin/prepare_next_loop＿iteration";
+[SYSTEM] INITIALIZING: /usr/bin/prepare_next_loop_iteration";
 
 // ── Markers ──────────────────────────────────────────────────────────────────
 
