@@ -1000,7 +1000,7 @@ dependencies = [
 
 [[package]]
 name = "bevy_game"
-version = "0.1.11"
+version = "0.1.12"
 dependencies = [
  "anim_ui",
  "bevy",
