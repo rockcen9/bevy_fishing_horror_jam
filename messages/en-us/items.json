@@ -62,7 +62,7 @@
     "target3": {
         "name": "Neural Architect 'Sarah'",
         "desc": "Her skull is severely deformed due to neural swelling and has been stuffed into a transparent cyst filled with yellow nutrient fluid. You can clearly see her brain twitching in agony within the liquid.",
-        "log": "#912 > 'This isn't an accident; it's murder. A Level-0 command bypassed all defenses directly, and the authorization signature belongs to external upper management. Someone please save us.'"
+        "log": "#912 > 'This isn't an accident; it's murder. A Level 0 command bypassed all defenses directly, and the authorization signature belongs to external upper management. Someone please save us.'"
     },
     "kai": {
         "name": "Senior Systems Architect 'Kai'",

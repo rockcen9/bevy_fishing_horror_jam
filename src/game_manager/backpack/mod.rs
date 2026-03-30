@@ -9,6 +9,8 @@ mod hide_ui;
 mod items;
 mod last_item;
 mod loading_bar;
+#[cfg(feature = "dev")]
+mod mock_caught_fish;
 mod spawn;
 
 pub(crate) use items::{HueShiftFishMaterial, PrefabId, PrefabList};
@@ -69,6 +71,8 @@ pub(crate) fn plugin(app: &mut App) {
     hide_ui::plugin(app);
     spawn::plugin(app);
     container::plugin(app);
+    #[cfg(feature = "dev")]
+    mock_caught_fish::plugin(app);
     app.add_systems(OnEnter(GameState::Succeeding), send_fish_caught_on_succeed);
 }
 
@@ -86,3 +90,4 @@ fn send_fish_caught_on_succeed(
 
     bucket.catch_index += 1;
 }
+
