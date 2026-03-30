@@ -1,0 +1,139 @@
+[workspace]
+resolver = "2"
+members = [
+    ".",
+    "crates/yolo",
+    "crates/ai_core",
+    "crates/kira_ext",
+    "crates/dev_debug_panel",
+    "crates/camera_effects",
+    "crates/anim_ui",
+    "tools/balance_downloader",
+    "tools/asset_scanner",
+]
+
+[workspace.dependencies]
+# ─── Engine ───────────────────────────────────────────────────────────────────
+bevy = { rev = "1b3b01e94003cbcf652f842057ebab547b400b0e", git = "https://github.com/bevyengine/bevy", default-features = false }
+bevy_common_assets = { git = "https://github.com/rockcen9/bevy_common_assets/", rev = "4d9fff4e0ae831fd3dd51720b8c3107ba3a565d7", features = [
+    "json",
+] }
+
+# ─── ML ───────────────────────────────────────────────────────────────────────
+burn = { git = "https://github.com/tracel-ai/burn", rev = "c44e7645184cc65bb321ca8299701a0136aaa18b", default-features = false }
+burn-store = { git = "https://github.com/tracel-ai/burn", rev = "c44e7645184cc65bb321ca8299701a0136aaa18b", default-features = false }
+burn-onnx = { git = "https://github.com/tracel-ai/burn-onnx", rev = "8f27a647947750b20afa0d8caa65e0f9e5b0e0c1", default-features = false }
+
+# ─── Workspace crates ─────────────────────────────────────────────────────────
+ai_core = { path = "crates/ai_core" }
+yolo = { path = "crates/yolo" }
+kira_ext = { path = "crates/kira_ext" }
+dev_debug_panel = { path = "crates/dev_debug_panel" }
+camera_effects = { path = "crates/camera_effects" }
+anim_ui = { path = "crates/anim_ui" }
+bevy_kira_audio = { path = "../bevy_kira_audio" }
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
+crossbeam-channel = "0.5.15"
+
+tracing = { version = "0.1" }
+# webbrowser = { version = "1" }
+dotenvy = "0.15.7"
+bevy_tweening = { git = "https://github.com/rockcen9/bevy_tweening", rev = "d5f646007751c39d2bb3e913b92c73b5332c6415" }
+bitflags = "2.11.0"
+extol_sprite_layer = { rev = "d9067858bc03d5307b3a5f1233658abb67464730", git = "https://github.com/rockcen9/extol_sprite_layer" }
+bevy-inspector-egui = { git = "https://github.com/rockcen9/bevy-inspector-egui/", rev = "fa98d21d963a31370218016d192aa4e1a9163189" }
+image = { version = "0.25.5", default-features = false }
+fast_image_resize = "4"
+bevy_framepace = { git = "https://github.com/rockcen9/bevy_framepace", rev = "8604689308e525121a2c8579cd8be04a468a0627" }
+# ─── WASM ─────────────────────────────────────────────────────────────────────
+wasm-bindgen = "=0.2.108"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = { version = "0.3" }
+bevy_nokhwa = { git = "https://github.com/rockcen9/bevy_nokhwa/", rev = "9e53aaff8818e6670791ced581efe997ed8eada0" }
+
+bevy_simple_screen_boxing = { path = "../bevy_simple_screen_boxing" }
+[package]
+name = "bevy_game"
+version = "0.1.10"
+edition = "2024"
+license = "AGPL-3.0-or-later"
+
+[dependencies]
+# ─── Engine ───────────────────────────────────────────────────────────────────
+bevy = { workspace = true, features = [
+    "2d",
+    "bevy_text",
+    "bevy_ui",
+    "bevy_gizmos",
+    "pan_camera",
+    "webgpu",
+    "png",
+    "jpeg",
+    "2d_bevy_render",
+    "default_app",
+    "default_platform",
+    "ui_api",
+    "ui_bevy_render",
+    "scene",
+] }
+yolo = { workspace = true }
+bevy_common_assets = { workspace = true }
+bevy_kira_audio = { workspace = true, optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+# crossbeam-channel = { workspace = true }
+
+bevy-intl = { git = "https://github.com/rockcen9/bevy-intl.git", rev = "2c2aced54b28d659d84ab6f0d6833f3ff27cb775" }
+tracing-subscriber = { version = "0.3", features = ["fmt"] }
+tracing = { workspace = true, features = [
+    "max_level_debug",
+    "release_max_level_warn",
+] }
+dotenvy = { workspace = true, optional = true }
+bevy_tweening = { workspace = true }
+bitflags = { workspace = true }
+extol_sprite_layer = { workspace = true }
+bevy_framepace = { workspace = true }
+bevy-inspector-egui = { workspace = true, features = [
+    "highlight_changes",
+], optional = true }
+smol_str = { version = "0.3.5", features = ["serde"] }
+strum = "0.27.2"
+strum_macros = "0.27.2"
+heck = "0.5.0"
+kira_ext = { workspace = true, features = [] }
+dev_debug_panel = { workspace = true, optional = true }
+camera_effects = { workspace = true }
+anim_ui = { workspace = true }
+bevy_simple_screen_boxing = { workspace = true }
+getrandom = { version = "0.4" }
+signal-smooth = "0.1.0"
+vleue_kinetoscope = { path = "../vleue_kinetoscope", default-features = false, features = [
+    "gif",
+    "streaming",
+] }
+
+[features]
+default = ["left_hand"]
+# Activates the real ML/camera backend (burn + nokhwa) in ai_core and
+# downstream crates.  Omit this feature during development for fast builds.
+backend = ["yolo/backend", "kira_ext/backend", "dep:bevy_kira_audio"]
+dev = [
+    "bevy/bevy_dev_tools",
+    "bevy/track_location",
+    "dep:bevy-inspector-egui",
+    "dep:dotenvy",
+    "dep:dev_debug_panel",
+]
+dev_native = ["dev"]
+web = ["bevy/webgpu"]
+release = []
+left_hand = []
+
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = { workspace = true }
+wasm-bindgen-futures = { workspace = true }
+getrandom = { version = "0.4", features = ["wasm_js"] }

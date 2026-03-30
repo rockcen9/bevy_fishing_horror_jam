@@ -1,0 +1,62 @@
+{
+  "images": [
+    "background/night.png",
+    "background/zone.png",
+    "textures/ai_fish.png",
+    "textures/backpack.png",
+    "textures/bobber.png",
+    "textures/close.png",
+    "textures/fish.png",
+    "textures/heart.png",
+    "textures/journal.png",
+    "textures/kai.png",
+    "textures/left_hand.png",
+    "textures/monster.png",
+    "textures/monster2.png",
+    "textures/monster_shadow.png",
+    "textures/pole.png",
+    "textures/right_hand.png",
+    "textures/shadow.png",
+    "textures/target1.png",
+    "textures/target2.png",
+    "textures/target3.png"
+  ],
+  "audio": [
+    "audio/music/monster.ogg",
+    "audio/music/night.ogg",
+    "audio/sfx/casting.ogg",
+    "audio/sfx/close_backpack.ogg",
+    "audio/sfx/glitch.ogg",
+    "audio/sfx/heart_beat.ogg",
+    "audio/sfx/open_backpack.ogg",
+    "audio/sfx/pull_up_succeed.ogg",
+    "audio/sfx/sq.ogg",
+    "audio/ui/pick.ogg",
+    "audio/ui/put.ogg"
+  ],
+  "fonts": [
+    "fonts/Cubic_11.ttf",
+    "fonts/FiraCode-VariableFont_wght.ttf",
+    "fonts/Quicksand-Regular.ttf",
+    "fonts/jf-openhuninn-2.1.ttf"
+  ],
+  "shaders": [
+    "shaders/background.wgsl",
+    "shaders/charge_arrow.wgsl",
+    "shaders/loading_bar.wgsl",
+    "shaders/mpeg_artifact.wgsl",
+    "shaders/pixelation.wgsl",
+    "shaders/pole.wgsl",
+    "shaders/qte_dial.wgsl",
+    "shaders/random_color_fish.wgsl"
+  ],
+  "data": [
+    "balance/items.json"
+  ],
+  "other": [
+    "tutorials/close.gif",
+    "tutorials/forward.gif",
+    "tutorials/open.gif",
+    "tutorials/pull.gif"
+  ]
+}

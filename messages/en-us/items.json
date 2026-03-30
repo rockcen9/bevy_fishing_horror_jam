@@ -1,0 +1,72 @@
+{
+    "journal": {
+        "name": "Journal",
+        "desc": "A worn, battle-scarred journal. In the corner, it reads 'Kai, Advanced Systems Architect, Neura-Fin'.",
+        "log": "I have returned to this lakeshore.\nI must find a way to access the logs of those 3 special carrier fish.\nIt is the only way to piece together the truth of the night the research facility spiraled out of control."
+    },
+    "bit_bass": {
+        "name": "Bit-Bass",
+        "desc": "Microcapacitors are embedded between its scales, and the heatsink on its dorsal fin glows red during high-speed processing.",
+        "log": "#01 > Sarah secretly placed her cold latte on the Bit-Bass's dorsal fin to heat it up."
+    },
+    "code_e": {
+        "name": "Cod-e",
+        "desc": "Encapsulates unstable liquid explosives within its body; sloshing yellow chemicals are visible through its transparent underbelly.",
+        "log": "#02 > It accidentally fell down the elevator shaft during transport and blew up the elevator, forcing everyone to climb ten flights of stairs for two weeks."
+    },
+    "fin_tech": {
+        "name": "Fin-Tech",
+        "desc": "Its fins are reinforced with titanium alloy and have extremely sharp edges. It produces a high-frequency whistling sound when swimming at high speeds.",
+        "log": "#03 > Arthur, Sarah, and Miller celebrated Kai's birthday by the lake and actually used a Fin-Tech as a knife to cut the cake."
+    },
+    "side_swimmer": {
+        "name": "Side-Swimmer",
+        "desc": "The optical lens on its side features laser guidance capabilities, allowing it to lock onto targets and pinpoint coordinates.",
+        "log": "#04 > Sarah: 'That Side-Swimmer's big eye is always staring at me. Today, right after I snuck a snack, its laser pointer kept aiming at my mouth. I think it's snitching on me to Yaldabaoth.'"
+    },
+    "deep_learn": {
+        "name": "Deep-Learn",
+        "desc": "Its head is translucent, revealing a pulsating orange core inside. Its pupils have shrunk into mechanical structures resembling a camera aperture.",
+        "log": "#05 > Detected Kai and Sarah attempting to avoid the cameras for an intimate encounter by the lake."
+    },
+    "miss_eel": {
+        "name": "Miss-Eel",
+        "desc": "Its body is slender like an arrow, with a streamlined armor-piercing cone mounted on its head. It generates tiny jet bubbles when swimming.",
+        "log": "#06 > Sarah noticed a 0.1-second dialogue delay in the central AI Yaldabaoth after its update, which makes her very worried."
+    },
+    "depth_carp": {
+        "name": "Depth-Carp",
+        "desc": "Depth charge contact signals are hidden beneath its heavy armored scales. It moves sluggishly like sunken scrap metal.",
+        "log": "#07 > Arthur's watch automatically uploaded data during his run, which was intercepted by Miller. Miller furiously chewed him out for ignoring cybersecurity."
+    },
+    "reef_er": {
+        "name": "Reef-er",
+        "desc": "Its surface is covered in heavily rusted server fans and casing debris. When stationary, it blends perfectly into piles of laboratory scrap.",
+        "log": "#08 > That lazy guy Kai used the geometric outline of a mug as a backdoor to gain maximum system privileges, nearly driving Miller crazy."
+    },
+    "howitz-perch": {
+        "name": "Howitz-Perch",
+        "desc": "Its lower jaw is abnormally enlarged and houses a small automated projector, capable of spitting out compressed bio-toxin packets at high speed.",
+        "log": "#09 > Arthur stood up his date on Dinter, and they used triangulation to track him down right to his front door."
+    },
+    "target1": {
+        "name": "Chief Engineer 'Arthur'",
+        "desc": "The flesh of his face is pinned tightly to a heatsink with rusty staples. His eyes have been gouged out and replaced with a frantically spinning industrial lens leaking red light. His lower jaw has been retrofitted into a constantly grinding steel shredder.",
+        "log": "#910 > 'Fuck, Yaldabaoth has gone completely insane. It's assigning robots to rip people's skulls open right in the hallways, forcefully stuffing those still-sparking brains into the bellies of fish. It's treating us like hot-swappable hardware... This is an absolute massacre.'"
+    },
+    "target2": {
+        "name": "Security Chief 'Miller'",
+        "desc": "His eyes were burned through by forcibly implanted red lasers, and his mouth is densely sewn shut with pitch-black copper wire. His entire body is covered in trembling, blade-like black microwave-absorbing panels, and the antenna on top of his head pierces straight through his skull.",
+        "log": "#911 > 'I specifically locked Yaldabaoth down in sandbox isolation and severed all external permissions! So why won't this bastard's attacks stop?'"
+    },
+    "target3": {
+        "name": "Neural Architect 'Sarah'",
+        "desc": "Her skull is severely deformed due to neural swelling and has been stuffed into a transparent cyst filled with yellow nutrient fluid. You can clearly see her brain twitching in agony within the liquid.",
+        "log": "#912 > 'This isn't an accident; it's murder. A Level-0 command bypassed all defenses directly, and the authorization signature belongs to external upper management. Someone please save us.'"
+    },
+    "kai": {
+        "name": "Senior Systems Architect 'Kai'",
+        "desc": "His upper torso is forcibly crammed into a translucent bionic fish belly filled with gelatinous coolant. His entire spine has been extracted and replaced with a high-speed data bus flashing with deep blue lights, extending from the back of his head down to a swaying cable tail, mechanically spitting oily bubbles in sync with the system's rhythmic pulse.",
+        "log": "#913 > I fell into the lake, and everything went dark..."
+    }
+}

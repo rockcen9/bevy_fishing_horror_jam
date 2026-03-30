@@ -1,0 +1,75 @@
+[package]
+license = "AGPL-3.0-or-later"
+name = "yolo"
+version = "0.1.0"
+edition = "2024"
+build = "build.rs"
+
+[dependencies]
+# ─── Engine ───────────────────────────────────────────────────────────────────
+bevy = { workspace = true, features = [
+    "2d",
+    "bevy_text",
+    "bevy_ui",
+    "bevy_gizmos",
+    "pan_camera",
+    "webgpu",
+    "png",
+    "jpeg",
+    "2d_bevy_render",
+    "default_app",
+    "default_platform",
+    "ui_api",
+    "ui_bevy_render",
+    "scene",
+] }
+
+# ─── Shared AI infra ──────────────────────────────────────────────────────────
+ai_core = { workspace = true }
+
+# ─── ML (backend feature only) ────────────────────────────────────────────────
+burn = { workspace = true, features = ["wgpu"], optional = true }
+burn-store = { workspace = true, features = ["burnpack"], optional = true }
+crossbeam-channel = { workspace = true, optional = true }
+image = { workspace = true, optional = true }
+fast_image_resize = { workspace = true, optional = true }
+# ─── Utilities ────────────────────────────────────────────────────────────────
+tracing = { workspace = true, features = [
+    "max_level_debug",
+    "release_max_level_warn",
+] }
+# webbrowser = { workspace = true, optional = true }
+
+[build-dependencies]
+burn-onnx = { workspace = true, default-features = false, optional = true }
+
+[features]
+default = []
+backend = [
+    "dep:burn",
+    "dep:burn-store",
+    "dep:burn-onnx",
+    "ai_core/backend",
+    "dep:crossbeam-channel",
+    "dep:image",
+    "dep:fast_image_resize",
+]
+dev = ["bevy/track_location"]
+dev_native = ["dev"]
+web = ["bevy/webgpu"]
+release = []
+
+# ─── Native-only deps (no wasm32) ─────────────────────────────────────────────
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+bevy = { workspace = true, features = ["multi_threaded"] }
+# ─── wasm32-only deps ─────────────────────────────────────────────────────────
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = { workspace = true }
+js-sys = { workspace = true }
+
+[[example]]
+name = "demo"
+required-features = ["backend"]
+
+[dev-dependencies]
+dotenvy = { workspace = true }

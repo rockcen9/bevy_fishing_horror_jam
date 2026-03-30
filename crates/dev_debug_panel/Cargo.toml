@@ -1,0 +1,8 @@
+[package]
+name = "dev_debug_panel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bevy = { workspace = true, features = ["default_app", "bevy_ui", "bevy_text", "ui_api", "bevy_state"] }
+strum = { version = "0.27.2", features = ["derive"] }

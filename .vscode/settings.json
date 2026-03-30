@@ -1,0 +1,32 @@
+{
+    // "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.cargo.features": [
+        "dev_native, backend"
+    ],
+    // Allow `rust-analyzer` and `cargo` to run simultaneously.
+    // This uses extra storage space, so consider commenting it out.
+    "rust-analyzer.cargo.targetDir": true,
+    // Display the directory of `mod.rs` files in the tab above the text editor.
+    "workbench.editor.customLabels.patterns": {
+        "**/mod.rs": "${dirname}/mod.rs"
+    },
+    // Enable format on save for all files
+    "editor.formatOnSave": true,
+    // Use rustfmt as the default formatter for Rust files
+    // "rust-analyzer.check.overrideCommand": [
+    //     "cargo",
+    //     "fix",
+    //     "--workspace",
+    //     "--message-format=json",
+    //     "--allow-dirty"
+    // ],
+    // Additional rust-analyzer settings for better formatting
+    "rust-analyzer.rustfmt.extraArgs": [],
+    "rust-analyzer.rustfmt.overrideCommand": null,
+    "rust-analyzer.procMacro.ignored": {
+        "bevy_simple_subsecond_system_macros": [
+            "hot"
+        ]
+    },
+    "godotTools.editorPath.godot4": "/Applications/Godot.app"
+}

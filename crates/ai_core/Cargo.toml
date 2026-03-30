@@ -1,0 +1,59 @@
+[package]
+name = "ai_core"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# ─── Engine ───────────────────────────────────────────────────────────────────
+bevy = { workspace = true, features = [
+    "2d",
+    "bevy_text",
+    "bevy_ui",
+    "bevy_gizmos",
+    "pan_camera",
+    "webgpu",
+    "png",
+    "jpeg",
+    "2d_bevy_render",
+    "default_app",
+    "default_platform",
+    "ui_api",
+    "ui_bevy_render",
+    "scene",
+] }
+
+# ─── ML (only compiled when `backend` feature is active) ──────────────────────
+burn = { workspace = true, features = ["wgpu"], optional = true }
+
+[features]
+default = []
+# Enables the real ML/camera backend (burn + nokhwa).
+# Without this feature only data types are compiled, giving much faster builds
+# and allowing mock data to be injected during development.
+backend = ["dep:burn", "dep:bevy_nokhwa"]
+dev = ["bevy/bevy_dev_tools", "bevy/bevy_ui_debug", "bevy/track_location"]
+dev_native = ["dev"]
+web = ["bevy/webgpu"]
+release = []
+
+# ─── Native-only deps (no wasm32) ─────────────────────────────────────────────
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+bevy = { workspace = true, features = ["multi_threaded"] }
+bevy_nokhwa = { workspace = true, features = ["capture_only"], optional = true }
+# ─── wasm32-only deps ─────────────────────────────────────────────────────────
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = { workspace = true }
+wasm-bindgen-futures = { workspace = true }
+js-sys = { workspace = true }
+web-sys = { workspace = true, features = [
+    "Window",
+    "Document",
+    "Navigator",
+    "MediaDevices",
+    "MediaStream",
+    "MediaStreamConstraints",
+    "HtmlVideoElement",
+    "HtmlCanvasElement",
+    "CanvasRenderingContext2d",
+    "ImageData",
+] }

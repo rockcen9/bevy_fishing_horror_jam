@@ -1,0 +1,14 @@
+[package]
+name = "camera_effects"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+bevy = { workspace = true, features = [
+    "2d_bevy_render",
+    "default_app",
+    "ui_api",
+    "ui_bevy_render",
+] }
+bevy_tweening = { workspace = true }
+rand = "0.10"

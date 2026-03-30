@@ -1,0 +1,16 @@
+accepted = [
+    "Apache-2.0",
+    "MIT",
+    "MIT-0",
+    "AGPL-3.0-or-later",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "CC0-1.0",
+    "Zlib",
+    "ISC",
+    "MPL-2.0",
+    "Unicode-3.0",
+    "Pixar",
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "journal",
+    "random_color": false,
+    "file_path": "textures/journal.png"
+  },
+  {
+    "id": "bit_bass",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "code_e",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "fin_tech",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "side_swimmer",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "deep_learn",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "miss_eel",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "depth_carp",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "reef_er",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "howitz-perch",
+    "random_color": true,
+    "file_path": "textures/ai_fish.png"
+  },
+  {
+    "id": "target1",
+    "random_color": false,
+    "file_path": "textures/target1.png"
+  },
+  {
+    "id": "target2",
+    "random_color": false,
+    "file_path": "textures/target2.png"
+  },
+  {
+    "id": "target3",
+    "random_color": false,
+    "file_path": "textures/target3.png"
+  },
+  {
+    "id": "kai",
+    "random_color": false,
+    "file_path": "textures/kai.png"
+  }
+]
