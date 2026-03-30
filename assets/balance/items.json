@@ -20,11 +20,6 @@
     "file_path": "textures/ai_fish.png"
   },
   {
-    "id": "side_swimmer",
-    "random_color": true,
-    "file_path": "textures/ai_fish.png"
-  },
-  {
     "id": "deep_learn",
     "random_color": true,
     "file_path": "textures/ai_fish.png"
@@ -45,7 +40,7 @@
     "file_path": "textures/ai_fish.png"
   },
   {
-    "id": "howitz-perch",
+    "id": "howitz_perch",
     "random_color": true,
     "file_path": "textures/ai_fish.png"
   },

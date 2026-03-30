@@ -10,7 +10,8 @@ pub(crate) struct HookedFish(pub PrefabId);
 
 /// Defines the pools and order in which fish appear.
 ///
-/// Sequence: 3 random → target[0] → 3 random → target[1] → 3 random → target[2] → repeat.
+/// Sequence: 3 random → target[0] → 3 random → target[1] → 2 random → target[2] → repeat.
+/// (11-item cycle to match the 11 available backpack slots after the journal occupies slot 0)
 #[derive(Resource, Reflect)]
 pub(crate) struct FishCatchSequence {
     #[reflect(ignore)]
@@ -44,10 +45,16 @@ impl Default for FishCatchSequence {
 }
 
 impl FishCatchSequence {
-    fn pick_next_fish_prefab_id(&self) -> Option<PrefabId> {
-        let pos = self.catch_index % 12;
-        if pos % 4 == 3 {
-            let idx = pos / 4;
+    pub(crate) fn pick_next_fish_prefab_id(&self) -> Option<PrefabId> {
+        // 11-item cycle: positions 3, 7, 10 are targets; all others are random.
+        let pos = self.catch_index % 11;
+        let target_idx = match pos {
+            3 => Some(0),
+            7 => Some(1),
+            10 => Some(2),
+            _ => None,
+        };
+        if let Some(idx) = target_idx {
             self.target
                 .get(idx % self.target.len().max(1))
                 .map(PrefabList::prefab_id)
