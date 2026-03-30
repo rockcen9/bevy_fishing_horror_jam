@@ -1,11 +1,12 @@
 use crate::prelude::*;
 use kira_ext::BGMEvent;
 
-mod attack_animation;
+mod bubble;
 mod charge_arrow;
 mod check_escape;
-mod shadow;
-mod spawn;
+mod human_shadow;
+mod monster_attack;
+mod monster_shadow;
 mod zone;
 
 const ROAMING_DURATION_SECS: f32 = 5.0;
@@ -16,21 +17,22 @@ struct RoamingToAttackTimer(Timer);
 pub(crate) fn plugin(app: &mut bevy::app::App) {
     app.add_sub_state::<MonsterState>();
     app.add_systems(
-        OnEnter(MonsterState::Roaming),
+        OnEnter(MonsterState::Bubble),
         (play_monster_bgm, insert_roaming_timer),
     );
-    app.add_systems(OnExit(MonsterState::Roaming), remove_roaming_timer);
+    app.add_systems(OnExit(MonsterState::Bubble), remove_roaming_timer);
     app.add_systems(
         Update,
-        tick_roaming_timer.run_if(in_state(MonsterState::Roaming)),
+        tick_roaming_timer.run_if(in_state(MonsterState::Bubble)),
     );
 
-    attack_animation::plugin(app);
+    bubble::plugin(app);
+    monster_attack::plugin(app);
     charge_arrow::plugin(app);
     zone::plugin(app);
-    spawn::plugin(app);
+    monster_shadow::plugin(app);
     check_escape::plugin(app);
-    shadow::plugin(app);
+    human_shadow::plugin(app);
 }
 
 fn play_monster_bgm(mut commands: Commands) {
@@ -54,7 +56,7 @@ fn tick_roaming_timer(
     mut next_state: ResMut<NextState<MonsterState>>,
 ) {
     if timer.0.tick(time.delta()).just_finished() {
-        next_state.set(MonsterState::PrepareAttack);
+        next_state.set(MonsterState::Shadow);
     }
 }
 
@@ -64,7 +66,7 @@ fn tick_roaming_timer(
 #[source(GameState=GameState::Monster)]
 pub enum MonsterState {
     #[default]
-    Roaming,
-    PrepareAttack,
-    AttackAnimation,
+    Bubble,
+    Shadow,
+    Attack,
 }

@@ -37,12 +37,12 @@ struct Monster1Sprite;
 // ── Plugin ──────────────────────────────────────────────────────────────────
 
 pub(super) fn plugin(app: &mut App) {
-    app.add_systems(OnEnter(MonsterState::AttackAnimation), on_enter);
-    app.add_systems(OnExit(MonsterState::AttackAnimation), on_exit);
+    app.add_systems(OnEnter(MonsterState::Attack), on_enter);
+    app.add_systems(OnExit(MonsterState::Attack), on_exit);
     app.add_systems(
         Update,
         (tick_monster2_spawn_timer, tick_monster2_linger_timer)
-            .run_if(in_state(MonsterState::AttackAnimation)),
+            .run_if(in_state(MonsterState::Attack)),
     );
 }
 
@@ -51,7 +51,7 @@ pub(super) fn plugin(app: &mut App) {
 fn on_enter(
     mut commands: Commands,
     asset_server: Res<AssetServer>,
-    shadow: Query<&Transform, With<super::spawn::MonsterShadow>>,
+    shadow: Query<&Transform, With<super::monster_shadow::MonsterShadow>>,
 ) {
     let x = shadow.single().map(|t| t.translation.x).unwrap_or(0.0);
 

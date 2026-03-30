@@ -21,12 +21,12 @@ struct AttackToPeaceDelayTimer(Timer);
 // ── Plugin ──────────────────────────────────────────────────────────────────
 
 pub(super) fn plugin(app: &mut App) {
-    app.add_systems(OnEnter(MonsterState::PrepareAttack), insert_escape_result);
-    app.add_systems(OnExit(MonsterState::PrepareAttack), remove_escape_resources);
+    app.add_systems(OnEnter(MonsterState::Shadow), insert_escape_result);
+    app.add_systems(OnExit(MonsterState::Shadow), remove_escape_resources);
     app.add_systems(
         Update,
         (evaluate_escape_on_charge_complete, tick_peace_delay)
-            .run_if(in_state(MonsterState::PrepareAttack)),
+            .run_if(in_state(MonsterState::Shadow)),
     );
     #[cfg(feature = "dev")]
     app.add_systems(Update, draw_corner_gizmos);
@@ -115,6 +115,6 @@ fn evaluate_escape_on_charge_complete(
         )));
         commands.trigger(SFXEvent::sfx("heart_beat"));
     } else {
-        next_monster_state.set(MonsterState::AttackAnimation);
+        next_monster_state.set(MonsterState::Attack);
     }
 }
