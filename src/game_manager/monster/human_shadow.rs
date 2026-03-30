@@ -15,9 +15,9 @@ pub(super) fn plugin(app: &mut App) {
     app.add_systems(Update, track_head_y.run_if(in_state(GameState::Monster)));
     app.add_systems(
         Update,
-        warn_shadow_wrong_side.run_if(in_state(MonsterState::PrepareAttack)),
+        warn_shadow_wrong_side.run_if(in_state(MonsterState::Shadow)),
     );
-    app.add_systems(OnExit(MonsterState::PrepareAttack), reset_shadow_color);
+    app.add_systems(OnExit(MonsterState::Shadow), reset_shadow_color);
 }
 
 fn spawn_shadow(

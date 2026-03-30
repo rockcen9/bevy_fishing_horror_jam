@@ -1,13 +1,10 @@
-use super::charge_arrow::ChargeArrowSide;
-use super::zone::MonsterZone;
+use super::bubble::MonsterShadowSpawnPoint;
 use crate::prelude::*;
 use bevy_tweening::{lens::TransformPositionLens, lens::TransformScaleLens, *};
 use std::time::Duration;
 
 // ── Constants ───────────────────────────────────────────────────────────────
 
-/// Horizontal inset from the screen edge for the shadow spawn range.
-const SPAWN_X_MARGIN: f32 = 400.0;
 /// Vertical float amplitude in pixels.
 const FLOAT_AMPLITUDE: f32 = 8.0;
 /// Duration of one half-cycle (up or down) in seconds.
@@ -30,11 +27,8 @@ struct MonsterShadowDespawnTimer(Timer);
 // ── Plugin ──────────────────────────────────────────────────────────────────
 
 pub(super) fn plugin(app: &mut App) {
-    app.add_systems(
-        OnEnter(MonsterState::PrepareAttack),
-        spawn_monster_shadow.after(super::charge_arrow::spawn_charge_arrow),
-    );
-    app.add_systems(OnExit(MonsterState::PrepareAttack), begin_shadow_despawn);
+    app.add_systems(OnEnter(MonsterState::Shadow), spawn_monster_shadow);
+    app.add_systems(OnExit(MonsterState::Shadow), begin_shadow_despawn);
     app.add_systems(Update, tick_shadow_despawn);
     #[cfg(feature = "dev")]
     app.add_systems(Update, draw_monster_gizmos);
@@ -47,16 +41,10 @@ fn spawn_monster_shadow(
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
-    zone: Res<MonsterZone>,
-    arrow_side: Res<ChargeArrowSide>,
+    spawn_point: Res<MonsterShadowSpawnPoint>,
 ) {
-    // Arrow on right → monster on left half, arrow on left → monster on right half.
-    let x = if arrow_side.0 {
-        f32_random_range(-crate::GAME_WIDTH / 2.0 + SPAWN_X_MARGIN, 0.0)
-    } else {
-        f32_random_range(0.0, crate::GAME_WIDTH / 2.0 - SPAWN_X_MARGIN)
-    };
-    let y = f32_random_range(zone.min_y, zone.max_y);
+    let x = spawn_point.x;
+    let y = spawn_point.y;
 
     let texture = asset_server.load("textures/monster_shadow.png");
     let material = materials.add(ColorMaterial {
@@ -87,7 +75,7 @@ fn spawn_monster_shadow(
     .with_repeat(RepeatCount::Infinite, RepeatStrategy::MirroredRepeat);
 
     commands.spawn((
-        DespawnOnExit(MonsterState::PrepareAttack),
+        DespawnOnExit(MonsterState::Shadow),
         TweenAnim::new(float_tween),
         AnimTarget::component::<Transform>(shadow_entity),
     ));
@@ -145,8 +133,3 @@ fn draw_monster_gizmos(query: Query<&GlobalTransform, With<MonsterShadow>>, mut 
     }
 }
 
-fn f32_random_range(min: f32, max: f32) -> f32 {
-    let raw = getrandom::u32().unwrap_or(0);
-    let t = (raw as f32) / (u32::MAX as f32);
-    min + t * (max - min)
-}

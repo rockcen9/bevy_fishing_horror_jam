@@ -49,26 +49,11 @@ impl Material2d for ChargeArrowMaterial {
 struct ChargeArrow;
 
 /// Which corner the charge arrow is currently in (`true` = right, `false` = left).
+/// Inserted by `bubble::decide_spawn_point` on `OnEnter(MonsterState::Bubble)`.
 #[derive(Resource)]
 pub(super) struct ChargeArrowSide(pub bool);
 
-/// Remembers the last two side picks to prevent 3 consecutive same-side picks.
-#[derive(Resource, Default)]
-pub(super) struct ArrowSideHistory([Option<bool>; 2]);
-
-impl ArrowSideHistory {
-    /// Returns true if both recorded picks are `side`, forcing the opposite.
-    fn is_forced_opposite(&self, side: bool) -> bool {
-        self.0[0] == Some(side) && self.0[1] == Some(side)
-    }
-
-    fn record(&mut self, side: bool) {
-        self.0[0] = self.0[1];
-        self.0[1] = Some(side);
-    }
-}
-
-/// Tracks accumulated charge while `MonsterState::Roaming` is active.
+/// Tracks accumulated charge while `MonsterState::Shadow` is active.
 #[derive(Resource, Default)]
 pub(super) struct ChargeProgress {
     /// Current fill level in [0.0, 1.0].
@@ -82,12 +67,11 @@ pub(super) struct ChargeProgress {
 pub(super) fn plugin(app: &mut App) {
     app.add_plugins(Material2dPlugin::<ChargeArrowMaterial>::default());
     app.init_resource::<ChargeProgress>();
-    app.init_resource::<ArrowSideHistory>();
-    app.add_systems(OnEnter(MonsterState::PrepareAttack), spawn_charge_arrow);
-    app.add_systems(OnExit(MonsterState::PrepareAttack), despawn_charge_arrow);
+    app.add_systems(OnEnter(MonsterState::Shadow), spawn_charge_arrow);
+    app.add_systems(OnExit(MonsterState::Shadow), despawn_charge_arrow);
     app.add_systems(
         Update,
-        tick_charge_progress.run_if(in_state(MonsterState::PrepareAttack)),
+        tick_charge_progress.run_if(in_state(MonsterState::Shadow)),
     );
 }
 
@@ -103,31 +87,24 @@ pub(super) fn spawn_charge_arrow(
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ChargeArrowMaterial>>,
     mut charge: ResMut<ChargeProgress>,
-    mut history: ResMut<ArrowSideHistory>,
+    arrow_side: Res<ChargeArrowSide>,
     palette: Res<crate::theme::palette::ColorPalette>,
 ) {
     *charge = ChargeProgress::default();
 
-    let mut use_right_side = getrandom::u32().unwrap_or(0) % 2 == 0;
-    // If random pick would make 3 consecutive same-side, flip it.
-    if history.is_forced_opposite(use_right_side) {
-        use_right_side = !use_right_side;
-    }
-    history.record(use_right_side);
-    commands.insert_resource(ChargeArrowSide(use_right_side));
-    let flip = if use_right_side { 1.0_f32 } else { 0.0_f32 };
+    let flip = if arrow_side.0 { 1.0_f32 } else { 0.0_f32 };
 
     let mat = materials.add(ChargeArrowMaterial {
         params: Vec4::new(0.0, flip, 0.0, 0.0),
         color_fill: color_to_linear_vec4(palette.blood_bright),
-        color_bg:   color_to_linear_vec4(palette.abyss_red.with_alpha(0.55)),
+        color_bg: color_to_linear_vec4(palette.abyss_red.with_alpha(0.55)),
     });
 
     let half = CHARGE_ARROW_SIZE / 2.0;
     let half_w = crate::GAME_WIDTH / 2.0;
 
     // Left arrow: left edge center. Right arrow: right edge center.
-    let x = if use_right_side {
+    let x = if arrow_side.0 {
         half_w - half //  820
     } else {
         -half_w + half // -820
