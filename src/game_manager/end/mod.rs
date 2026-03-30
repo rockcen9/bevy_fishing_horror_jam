@@ -22,13 +22,13 @@ const CREDITS_BOTTOM: f32 = TEXT_PADDING;
 const TERMINAL_MESSAGE: &str = "\
 [SYSTEM] SUCCESS: OBJECTIVE_CRITERIA_MET\n\
 \n\
-[SYSTEM] EXTRACTING: /logs/sim_1042_final_metrics.dat\n\
+[SYSTEM] EXTRACTING: /logs/sim_90423831＿final_metrics.dat\n\
 \n\
 [SYSTEM] STATUS: DATA_VALIDATED_AND_UPLOADED\n\
 \n\
 [SYSTEM] EXECUTING: /usr/bin/purge_environment\n\
 \n\
-[SYSTEM] INITIALIZING: /usr/bin/prepare_next_iteration";
+[SYSTEM] INITIALIZING: /usr/bin/prepare_next_loop＿iteration";
 
 // ── Markers ──────────────────────────────────────────────────────────────────
 
@@ -209,8 +209,7 @@ fn tick_end_sequence(
         }
         EndPhase::ShowEnd { elapsed } => {
             *elapsed += dt;
-            let fade_t =
-                ((*elapsed - SHOW_END_DELAY_SECS) / SHOW_END_FADE_SECS).clamp(0.0, 1.0);
+            let fade_t = ((*elapsed - SHOW_END_DELAY_SECS) / SHOW_END_FADE_SECS).clamp(0.0, 1.0);
             if let Ok(mut color) = title_color.single_mut() {
                 color.set_if_neq(TextColor(color.0.with_alpha(fade_t)));
             }
