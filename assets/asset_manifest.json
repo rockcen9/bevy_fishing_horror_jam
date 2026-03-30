@@ -19,9 +19,11 @@
     "textures/shadow.png",
     "textures/target1.png",
     "textures/target2.png",
-    "textures/target3.png"
+    "textures/target3.png",
+    "textures/tutorial.png"
   ],
   "audio": [
+    "audio/music/end.ogg",
     "audio/music/monster.ogg",
     "audio/music/night.ogg",
     "audio/sfx/casting.ogg",
