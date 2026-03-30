@@ -56,7 +56,7 @@ bevy_nokhwa = { git = "https://github.com/rockcen9/bevy_nokhwa/", rev = "9e53aaf
 bevy_simple_screen_boxing = { path = "../bevy_simple_screen_boxing" }
 [package]
 name = "bevy_game"
-version = "0.1.13"
+version = "0.1.14"
 edition = "2024"
 license = "AGPL-3.0-or-later"
 
