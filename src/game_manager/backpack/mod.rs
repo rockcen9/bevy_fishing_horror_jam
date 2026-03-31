@@ -11,6 +11,7 @@ mod last_item;
 mod loading_bar;
 #[cfg(feature = "dev")]
 mod mock_caught_fish;
+mod shake;
 mod spawn;
 
 pub(crate) use items::{HueShiftFishMaterial, PrefabId, PrefabList};
@@ -69,6 +70,7 @@ pub(crate) fn plugin(app: &mut App) {
     loading_bar::plugin(app);
     hand_pointer::plugin(app);
     hide_ui::plugin(app);
+    shake::plugin(app);
     spawn::plugin(app);
     container::plugin(app);
     #[cfg(feature = "dev")]
