@@ -17,7 +17,7 @@ fn spawn_backpack(
     let texture = asset_server.load("textures/backpack.png");
 
     let x = -960.0 + BACKPACK_WIDTH / 2.0 + PADDING;
-    let y = DISPLAY_SIZE / 2.0 + DISPLAY_GAP + BACKPACK_HEIGHT / 2.0;
+    let y = -250.0 + DISPLAY_SIZE / 2.0 + DISPLAY_GAP + BACKPACK_HEIGHT / 2.0;
 
     commands.spawn((
         Name::new("Backpack"),

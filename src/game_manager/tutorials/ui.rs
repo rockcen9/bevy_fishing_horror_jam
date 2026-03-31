@@ -1,6 +1,7 @@
 use crate::loading_bar::{LOADING_BAR_RING_SIZE_PX, LoadingBarMaterial};
 use crate::prelude::*;
 use bevy_intl::I18n;
+use kira_ext::SFXEvent;
 use vleue_kinetoscope::AnimatedImageController;
 
 // ── Z Layers ────────────────────────────────────────────────────────────────
@@ -39,7 +40,7 @@ const GIF_PATHS: [&str; 4] = [
 // ── Layout ──────────────────────────────────────────────────────────────────
 const TITLE_Y: f32 = 390.0;
 const DIVIDER_Y: f32 = 320.0;
-const CLOSE_BTN_POS: Vec2 = Vec2::new(PANEL_W / 2.0 - 60.0, PANEL_H / 2.0 - 60.0);
+const CLOSE_BTN_POS: Vec2 = Vec2::new(PANEL_W / 2.0 - 60.0, 0.0);
 const CLOSE_BTN_SIZE: f32 = 80.0;
 const CLOSE_HOVER_DURATION_SECS: f32 = 1.0;
 
@@ -209,6 +210,7 @@ fn tick_close_hover(
     time: Res<Time>,
     mut state: ResMut<CloseHoverState>,
     mut next_state: ResMut<NextState<GameState>>,
+    mut commands: Commands,
 ) {
     let half = CLOSE_BTN_SIZE / 2.0;
 
@@ -228,6 +230,7 @@ fn tick_close_hover(
         state.elapsed += time.delta_secs();
         if state.elapsed >= CLOSE_HOVER_DURATION_SECS {
             *state = CloseHoverState::default();
+            commands.trigger(SFXEvent::ui("put"));
             next_state.set(GameState::Idle);
         }
     } else {

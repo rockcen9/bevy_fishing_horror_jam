@@ -1,6 +1,7 @@
 use crate::loading_bar::{LOADING_BAR_RING_SIZE_PX, LoadingBarMaterial};
 use crate::prelude::*;
 use bevy_intl::I18n;
+use kira_ext::SFXEvent;
 
 use super::{
     BackpackCloseEvent, BackpackIsOpen, BackpackOpenEvent, FishCaughtEvent,
@@ -148,6 +149,7 @@ fn on_backpack_open(
     next_pause.set(Pause(true));
     next_game_state.set(GameState::UIOpened);
     backpack_is_open.0 = true;
+    commands.trigger(SFXEvent::sfx("open_backpack"));
 }
 
 fn on_backpack_close(
@@ -182,6 +184,7 @@ fn on_backpack_close(
     next_game_state.set(GameState::Idle);
     backpack_is_open.0 = false;
     *close_state = ContainerCloseHoverState::default();
+    commands.trigger(SFXEvent::sfx("close_backpack"));
     commands.trigger(DespawnDescriptionPanelEvent);
 }
 
@@ -506,9 +509,9 @@ fn spawn_backpack_ui(
     let origin_x = -total_w / 2.0 + SLOT_SIZE / 2.0;
     let origin_y = total_h / 2.0 - SLOT_SIZE / 2.0;
 
-    // Close button: top-right corner of the panel
+    // Close button: bottom-right corner of the panel
     let close_x = CONTAINER_W / 2.0 - CLOSE_BTN_SIZE / 2.0 - CLOSE_BTN_MARGIN;
-    let close_y = CONTAINER_H / 2.0 - CLOSE_BTN_SIZE / 2.0 - CLOSE_BTN_MARGIN;
+    let close_y = -CONTAINER_H / 2.0 + CLOSE_BTN_SIZE / 2.0 + CLOSE_BTN_MARGIN;
 
     commands
         .spawn((
@@ -535,7 +538,7 @@ fn spawn_backpack_ui(
                 }
             }
 
-            // Close button (top-right corner)
+            // Close button (bottom-right corner)
             parent.spawn((
                 Name::new("CloseButton"),
                 CloseButton,

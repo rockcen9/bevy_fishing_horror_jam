@@ -14,7 +14,7 @@ fn spawn_backpack_hover_loading_bar(
     mut materials: ResMut<Assets<LoadingBarMaterial>>,
 ) {
     let x = -960.0 + BACKPACK_WIDTH / 2.0 + PADDING;
-    let y = DISPLAY_SIZE / 2.0 + DISPLAY_GAP + BACKPACK_HEIGHT / 2.0;
+    let y = -250.0 + DISPLAY_SIZE / 2.0 + DISPLAY_GAP + BACKPACK_HEIGHT / 2.0;
 
     commands.spawn((
         Name::new("BackpackLoadingBar"),

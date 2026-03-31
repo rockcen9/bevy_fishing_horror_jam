@@ -7,6 +7,7 @@ use crate::game_manager::backpack::{
 };
 use crate::loading_bar::LoadingBarMaterial;
 use crate::prelude::*;
+use kira_ext::SFXEvent;
 
 // ── Layout ───────────────────────────────────────────────────────────────────
 
@@ -225,9 +226,9 @@ fn on_show_description_panel(
     let close_x = DESCRIPTION_PANEL_W / 2.0
         - DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
         - DESCRIPTION_CLOSE_BTN_MARGIN_PX;
-    let close_y = DESCRIPTION_PANEL_H / 2.0
-        - DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
-        - DESCRIPTION_CLOSE_BTN_MARGIN_PX;
+    let close_y = -DESCRIPTION_PANEL_H / 2.0
+        + DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
+        + DESCRIPTION_CLOSE_BTN_MARGIN_PX;
 
     // Hide close button when backpack is open (its close button handles everything).
     let close_btn_vis = if backpack_open {
@@ -377,6 +378,7 @@ fn on_show_description_panel(
         next_pause.set(Pause(true));
         panel_state.triggered_pause = true;
     }
+    commands.trigger(SFXEvent::ui("pick"));
 }
 
 fn on_hide_description_panel(
@@ -419,4 +421,5 @@ fn on_hide_description_panel(
         }
     }
     *close_state = DescriptionCloseHoverState::default();
+    commands.trigger(SFXEvent::ui("put"));
 }

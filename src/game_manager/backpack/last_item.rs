@@ -146,7 +146,7 @@ fn spawn_last_item_display(
     asset_server: Res<AssetServer>,
 ) {
     let x = -960.0 + BACKPACK_WIDTH / 2.0 + PADDING;
-    let y = 0.0;
+    let y = -250.0;
 
     // Journal texture is 310×443; spawn with correct aspect ratio.
     let (w, h) = journal_display_size();
