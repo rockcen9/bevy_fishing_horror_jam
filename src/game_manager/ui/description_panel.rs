@@ -225,9 +225,9 @@ fn on_show_description_panel(
     let close_x = DESCRIPTION_PANEL_W / 2.0
         - DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
         - DESCRIPTION_CLOSE_BTN_MARGIN_PX;
-    let close_y = DESCRIPTION_PANEL_H / 2.0
-        - DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
-        - DESCRIPTION_CLOSE_BTN_MARGIN_PX;
+    let close_y = -DESCRIPTION_PANEL_H / 2.0
+        + DESCRIPTION_CLOSE_BTN_SIZE_PX / 2.0
+        + DESCRIPTION_CLOSE_BTN_MARGIN_PX;
 
     // Hide close button when backpack is open (its close button handles everything).
     let close_btn_vis = if backpack_open {
