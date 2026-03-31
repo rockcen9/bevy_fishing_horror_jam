@@ -58,7 +58,7 @@ fn main() {
             .to_lowercase();
 
         match ext.as_ref() {
-            "png" | "jpg" | "jpeg" | "webp" | "bmp" | "tga" => manifest.images.push(relative),
+            "png" | "jpg" | "jpeg" | "webp" | "bmp" | "tga" | "gif" => manifest.images.push(relative),
             "ogg" | "mp3" | "wav" | "flac" => manifest.audio.push(relative),
             "ttf" | "otf" => manifest.fonts.push(relative),
             "wgsl" | "glsl" | "spv" => manifest.shaders.push(relative),
@@ -84,4 +84,7 @@ fn main() {
     println!("  shaders: {}", manifest.shaders.len());
     println!("  data:    {}", manifest.data.len());
     println!("  other:   {}", manifest.other.len());
+    for path in &manifest.other {
+        println!("    - {path}");
+    }
 }
