@@ -31,7 +31,7 @@ kira_ext = { path = "crates/kira_ext" }
 dev_debug_panel = { path = "crates/dev_debug_panel" }
 camera_effects = { path = "crates/camera_effects" }
 anim_ui = { path = "crates/anim_ui" }
-bevy_kira_audio = { path = "../bevy_kira_audio" }
+bevy_kira_audio = { git = "https://github.com/rockcen9/bevy_kira_audio/", rev = "60abdd0c424eadbc936039031e957bfe94e923fe" }
 
 # ─── Utilities ────────────────────────────────────────────────────────────────
 crossbeam-channel = "0.5.15"
@@ -53,7 +53,7 @@ js-sys = "0.3"
 web-sys = { version = "0.3" }
 bevy_nokhwa = { git = "https://github.com/rockcen9/bevy_nokhwa/", rev = "9e53aaff8818e6670791ced581efe997ed8eada0" }
 
-bevy_simple_screen_boxing = { path = "../bevy_simple_screen_boxing" }
+bevy_simple_screen_boxing = { git = "https://github.com/rockcen9/bevy_simple_screen_boxing/", rev = "3f562bdde9a1ef9acc82c47759572e9c6d4a1700" }
 [package]
 name = "bevy_game"
 version = "0.1.19"
@@ -111,7 +111,7 @@ anim_ui = { workspace = true }
 bevy_simple_screen_boxing = { workspace = true }
 getrandom = { version = "0.4" }
 signal-smooth = "0.1.0"
-vleue_kinetoscope = { path = "../vleue_kinetoscope", default-features = false, features = [
+vleue_kinetoscope = { git = "https://github.com/rockcen9/vleue_kinetoscope/", rev = "d9eec1a0326649a0d163372188a1410c21ac12b6", default-features = false, features = [
     "gif",
     "streaming",
 ] }
