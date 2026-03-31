@@ -1,6 +1,7 @@
 use crate::loading_bar::{LOADING_BAR_RING_SIZE_PX, LoadingBarMaterial};
 use crate::prelude::*;
 use bevy_intl::I18n;
+use kira_ext::SFXEvent;
 
 use super::{
     BackpackCloseEvent, BackpackIsOpen, BackpackOpenEvent, FishCaughtEvent,
@@ -148,6 +149,7 @@ fn on_backpack_open(
     next_pause.set(Pause(true));
     next_game_state.set(GameState::UIOpened);
     backpack_is_open.0 = true;
+    commands.trigger(SFXEvent::sfx("open_backpack"));
 }
 
 fn on_backpack_close(
@@ -182,6 +184,7 @@ fn on_backpack_close(
     next_game_state.set(GameState::Idle);
     backpack_is_open.0 = false;
     *close_state = ContainerCloseHoverState::default();
+    commands.trigger(SFXEvent::sfx("close_backpack"));
     commands.trigger(DespawnDescriptionPanelEvent);
 }
 
