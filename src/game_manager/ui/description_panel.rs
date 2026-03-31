@@ -7,6 +7,7 @@ use crate::game_manager::backpack::{
 };
 use crate::loading_bar::LoadingBarMaterial;
 use crate::prelude::*;
+use kira_ext::SFXEvent;
 
 // ── Layout ───────────────────────────────────────────────────────────────────
 
@@ -377,6 +378,7 @@ fn on_show_description_panel(
         next_pause.set(Pause(true));
         panel_state.triggered_pause = true;
     }
+    commands.trigger(SFXEvent::ui("pick"));
 }
 
 fn on_hide_description_panel(
@@ -419,4 +421,5 @@ fn on_hide_description_panel(
         }
     }
     *close_state = DescriptionCloseHoverState::default();
+    commands.trigger(SFXEvent::ui("put"));
 }
