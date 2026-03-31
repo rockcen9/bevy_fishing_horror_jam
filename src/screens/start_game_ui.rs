@@ -1,6 +1,7 @@
 //! The "Start Game" UI shown on the Title screen.
 
 use bevy::{prelude::*, ui::Val::*};
+use kira_ext::SFXEvent;
 
 use crate::{
     screens::Screen,
@@ -137,7 +138,11 @@ fn start_button(palette: &ColorPalette, asset_server: &AssetServer) -> impl Bund
                     )],
                 ))
                 .observe(
-                    |_: On<OnPress>, mut next_screen: ResMut<NextState<Screen>>| {
+                    |_: On<OnPress>,
+                     mut next_screen: ResMut<NextState<Screen>>,
+                     mut commands: Commands| {
+                        commands.trigger(SFXEvent::ui("put"));
+                        commands.trigger(SFXEvent::sfx("heavy"));
                         next_screen.set(Screen::Gameplay);
                     },
                 );

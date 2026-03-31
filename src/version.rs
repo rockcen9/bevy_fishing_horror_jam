@@ -1,9 +1,9 @@
 use bevy::{prelude::*, ui::Val::*};
 
-use crate::GAME_VERSION;
+use crate::{GAME_VERSION, Screen};
 
 pub(crate) fn plugin(app: &mut App) {
-    app.add_systems(Startup, spawn_version_button);
+    app.add_systems(OnEnter(Screen::Title), spawn_version_button);
 }
 
 fn spawn_version_button(mut commands: Commands) {
@@ -25,7 +25,11 @@ fn spawn_version_button(mut commands: Commands) {
                 ..default()
             },
             // ash from ColorPalette (#b6b6b4)
-            TextColor(Color::srgb(0xb6 as f32 / 255.0, 0xb6 as f32 / 255.0, 0xb4 as f32 / 255.0)),
+            TextColor(Color::srgb(
+                0xb6 as f32 / 255.0,
+                0xb6 as f32 / 255.0,
+                0xb4 as f32 / 255.0
+            )),
             Pickable::IGNORE,
         )],
     ));

@@ -20,7 +20,12 @@
     "textures/target1.png",
     "textures/target2.png",
     "textures/target3.png",
-    "textures/tutorial.png"
+    "textures/tutorial.png",
+    "tutorials/close.gif",
+    "tutorials/dodge.gif",
+    "tutorials/forward.gif",
+    "tutorials/open.gif",
+    "tutorials/pull.gif"
   ],
   "audio": [
     "audio/music/end.ogg",
@@ -55,10 +60,5 @@
   "data": [
     "balance/items.json"
   ],
-  "other": [
-    "tutorials/close.gif",
-    "tutorials/forward.gif",
-    "tutorials/open.gif",
-    "tutorials/pull.gif"
-  ]
+  "other": []
 }

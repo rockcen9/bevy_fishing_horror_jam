@@ -23,16 +23,18 @@ const GIF_SIZE: Vec2 = Vec2::new(260.0, 260.0);
 const GIF_FRAME_SIZE: f32 = 290.0;
 const GIF_Y: f32 = 40.0;
 const LABEL_Y: f32 = -175.0;
-const GIF_POSITIONS: [f32; 4] = [-585.0, -195.0, 195.0, 585.0];
-const GIF_LABELS: [&str; 4] = [
+const GIF_POSITIONS: [f32; 5] = [-640.0, -320.0, 0.0, 320.0, 640.0];
+const GIF_LABELS: [&str; 5] = [
     "Cast the line",
     "Pull up the line",
+    "Move your head",
     "Open Backpack",
     "Close Backpack",
 ];
-const GIF_PATHS: [&str; 4] = [
+const GIF_PATHS: [&str; 5] = [
     "tutorials/forward.gif",
     "tutorials/pull.gif",
+    "tutorials/dodge.gif",
     "tutorials/open.gif",
     "tutorials/close.gif",
 ];
@@ -144,7 +146,7 @@ fn spawn_ui(
     ));
 
     // GIF columns
-    for i in 0..4 {
+    for i in 0..5 {
         let x = GIF_POSITIONS[i];
 
         commands.spawn((
