@@ -506,9 +506,9 @@ fn spawn_backpack_ui(
     let origin_x = -total_w / 2.0 + SLOT_SIZE / 2.0;
     let origin_y = total_h / 2.0 - SLOT_SIZE / 2.0;
 
-    // Close button: top-right corner of the panel
+    // Close button: bottom-right corner of the panel
     let close_x = CONTAINER_W / 2.0 - CLOSE_BTN_SIZE / 2.0 - CLOSE_BTN_MARGIN;
-    let close_y = CONTAINER_H / 2.0 - CLOSE_BTN_SIZE / 2.0 - CLOSE_BTN_MARGIN;
+    let close_y = -CONTAINER_H / 2.0 + CLOSE_BTN_SIZE / 2.0 + CLOSE_BTN_MARGIN;
 
     commands
         .spawn((
@@ -535,7 +535,7 @@ fn spawn_backpack_ui(
                 }
             }
 
-            // Close button (top-right corner)
+            // Close button (bottom-right corner)
             parent.spawn((
                 Name::new("CloseButton"),
                 CloseButton,
