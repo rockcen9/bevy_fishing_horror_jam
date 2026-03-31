@@ -39,7 +39,7 @@ const GIF_PATHS: [&str; 4] = [
 // ── Layout ──────────────────────────────────────────────────────────────────
 const TITLE_Y: f32 = 390.0;
 const DIVIDER_Y: f32 = 320.0;
-const CLOSE_BTN_POS: Vec2 = Vec2::new(PANEL_W / 2.0 - 60.0, -PANEL_H / 2.0 + 60.0);
+const CLOSE_BTN_POS: Vec2 = Vec2::new(PANEL_W / 2.0 - 60.0, 0.0);
 const CLOSE_BTN_SIZE: f32 = 80.0;
 const CLOSE_HOVER_DURATION_SECS: f32 = 1.0;
 
