@@ -2,6 +2,7 @@
 
 use crate::loading_bar::{LOADING_BAR_RING_SIZE_PX, LoadingBarMaterial};
 use crate::prelude::*;
+use kira_ext::SFXEvent;
 
 // Top-left corner: 1920×1080 world, origin at center → top-left is (-960, 540)
 const BTN_SIZE: f32 = 80.0;
@@ -82,6 +83,7 @@ fn tick_tutorial_button_hover(
     time: Res<Time>,
     mut state: ResMut<TutorialButtonHoverState>,
     mut next_state: ResMut<NextState<GameState>>,
+    mut commands: Commands,
 ) {
     // Disable while Tutorial is already open
     if game_state.is_some_and(|s| *s == GameState::Tutorial) {
@@ -108,6 +110,7 @@ fn tick_tutorial_button_hover(
         state.elapsed += time.delta_secs();
         if state.elapsed >= HOVER_DURATION_SECS {
             *state = TutorialButtonHoverState::default();
+            // commands.trigger(SFXEvent::ui("pick"));
             next_state.set(GameState::Tutorial);
         }
     } else {
