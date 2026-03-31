@@ -6,3 +6,6 @@ build-release:
 
 run:
 	bevy run --features web,backend web
+
+release:
+	bevy run --release --yes --features web,backend web --bundle
